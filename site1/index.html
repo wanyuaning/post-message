@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>父页面</h1>
+    <input type="button" value="向子页发送信息" onclick="sendPost()">
+    <iframe id="otherPage" src="http://172.20.10.4:8081/user/main.html?v=4" frameborder="0"></iframe>
+    <script>
+        function sendPost() {
+            var iframeWin = document.getElementById("otherPage").contentWindow;
+            iframeWin.postMessage('父页发送给子页的信息', 'http://172.20.10.4:8081');
+        }
+
+        window.addEventListener('message', fn, false)
+        function fn(event) {
+            console.log('父页接收到：', event.data);
+        }
+    </script>
+</body>
+
+</html>

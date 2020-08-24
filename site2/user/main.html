@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Message</title>
+</head>
+
+<body>
+    <h1>子页面-用户</h1>
+    <script>
+        window.parent.postMessage('子页主动给父页发信息', "*");
+        window.addEventListener('message', (event) => {
+            console.log(' 子页接收到：', event.data);
+            console.log(' 子页回复：', '我收到了你的信息');
+            window.parent.postMessage('我收到了你的信息', "*");
+        })
+    </script>
+</body>
+
+</html>
